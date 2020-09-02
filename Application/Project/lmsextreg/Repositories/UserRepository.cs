@@ -1,0 +1,21 @@
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using lmsextreg.Data;
+
+namespace lmsextreg.Repositories
+{
+    public class UserRepository : IUserRepository
+    {
+        private readonly ApplicationDbContext _dbContext;
+
+        public UserRepository(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+        public ApplicationUser RetrieveByNormalizedEmail(string normalizedEmail)
+        {
+            return _dbContext.ApplicationUsers
+                    .Where(au => au.NormalizedEmail == normalizedEmail).SingleOrDefault();
+        }
+    }
+}
