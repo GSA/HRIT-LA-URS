@@ -31,18 +31,23 @@
                             <a class="nav-link urs-nav-link-brand" asp-page="/Index">Learning Academy User Registration</a>
                         </li>
                         <!-- <li class="nav-item">
-                            <a class="nav-link urs-nav-link" asp-page="/Index">Home</a>
-                        </li> -->
+        <a class="nav-link urs-nav-link" asp-page="/Index">Home</a>
+    </li> -->
 
                         @if ((await AuthorizationService.AuthorizeAsync(User, "CanAccessStudentLink")).Succeeded)
                         {
                             <li class="nav-item"><a class="nav-link urs-nav-link" asp-page="/Enrollments/Index">My Programs</a></li>
-                        }    
-                    
+                        }
+
                         @if ((await AuthorizationService.AuthorizeAsync(User, "CanAccessApproverLink")).Succeeded)
                         {
                             <li class="nav-item"><a class="nav-link urs-nav-link" asp-page="/Approvals/Index">Enrollments</a></li>
-                        }   
+                        }
+
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "CanAccessAdminLink")).Succeeded)
+                        {
+                            <li class="nav-item"><a class="nav-link urs-nav-link" asp-page="/Admin/Index">User Admin</a></li>
+                        }
                     </ul>
                     @await Html.PartialAsync("_LoginPartial")
                 </div>
@@ -87,7 +92,7 @@
                     </div>                               
                 </div>
             </footer>   
-            <!-- [ICSH-LA-URS][branch: master][Wednesday, August 26, 2020][03:00 PM CT] -->
+            <!-- [HRIT-LA-URS][branch: master][Wednesday, September 02, 2020][03:30 PM CT] -->
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="

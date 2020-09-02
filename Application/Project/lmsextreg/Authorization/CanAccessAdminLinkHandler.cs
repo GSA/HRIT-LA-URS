@@ -10,32 +10,31 @@ using lmsextreg.Services;
 
 namespace lmsextreg.Authorization
 {
-    public class CanAccessProfileLinkHandler : AuthorizationHandler<CanAccessProfileLink>
+    public class CanAccessAdminLinkHandler : AuthorizationHandler<CanAccessAdminLink>
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ISessionCookieService _sessionCookieService;
-        private readonly ILogger<CanAccessProfileLinkHandler> _logger;        
+        private readonly ILogger<CanAccessAdminLinkHandler> _logger;
 
-        public CanAccessProfileLinkHandler  (   SignInManager<ApplicationUser> signInMgr,
+        public CanAccessAdminLinkHandler(   SignInManager<ApplicationUser> signInMgr,
                                                 ISessionCookieService sessionCookieSvc,
-                                                ILogger<CanAccessProfileLinkHandler> logger
+                                                ILogger<CanAccessAdminLinkHandler> logger
                                             )
         {
             _signInManager = signInMgr;
             _sessionCookieService = sessionCookieSvc;
             _logger = logger; 
-
         }        
 
         protected override Task HandleRequirementAsync (AuthorizationHandlerContext authContext,
-                                                        CanAccessProfileLink requirement)
+                                                        CanAccessAdminLink requirement)
         {
-            bool isSignedIn                 = false;
-            bool isTwoFactorEnabled         = false;
-            bool isStudentOrApproverOrAdmin = false;
-            string appUserId                = null;
-            string userName                 = "null";
-            ApplicationUser appUser         = null;
+            bool isSignedIn         = false;
+            bool isTwoFactorEnabled = false;
+            bool isAdmin            = false;
+            string userName         = "null";
+            ApplicationUser appUser = null;
+            string appUserId        = null;
 
             if ( _signInManager != null && _sessionCookieService != null )
             {
@@ -66,26 +65,23 @@ namespace lmsextreg.Authorization
 
                     if ( authContext != null && authContext.User != null)
                     {
-                        bool isStudent              = authContext.User.IsInRole("STUDENT");
-                        bool isApprover             = authContext.User.IsInRole("APPROVER");
-                        bool isAdmin                = authContext.User.IsInRole(RoleConstants.ADMIN);
-                        isStudentOrApproverOrAdmin  = (isStudent || isApprover || isAdmin);
+                        isAdmin = authContext.User.IsInRole(RoleConstants.ADMIN);
                     }
                 }
             }
 
             string logSnippet = new StringBuilder("[")
                     .Append(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"))
-                    .Append("][CanAccessProfileLinkHandler] => ")
+                    .Append("][CanAccessAdminLinkHandler] => ")
                     .ToString();
 
-            Console.WriteLine(logSnippet + $"({userName})(isSignedIn)................: {isSignedIn}");
-            Console.WriteLine(logSnippet + $"({userName}(isTwoFactorEnabled).........: {isTwoFactorEnabled}");
-            Console.WriteLine(logSnippet + $"({userName}(isStudentOrApproverOrAdmin).: {isStudentOrApproverOrAdmin}");
+            Console.WriteLine(logSnippet + $"({userName})(isSignedIn)........: {isSignedIn}");
+            Console.WriteLine(logSnippet + $"({userName}(isTwoFactorEnabled).: {isTwoFactorEnabled}");
+            Console.WriteLine(logSnippet + $"({userName}(isAdmin)............: {isAdmin}");
 
             if ( isSignedIn 
                     && isTwoFactorEnabled 
-                    && isStudentOrApproverOrAdmin)
+                    && isAdmin )
             {
                 authContext.Succeed(requirement);
             }            

@@ -150,12 +150,16 @@ namespace lmsextreg
                     policy.Requirements.Add(new CanAccessApproverLink()));    
 
                 options.AddPolicy("CanAccessProfileLink", policy =>
-                    policy.Requirements.Add(new CanAccessProfileLink()));                                      
+                    policy.Requirements.Add(new CanAccessProfileLink()));
+
+                options.AddPolicy("CanAccessAdminLink", policy =>
+                    policy.Requirements.Add(new CanAccessAdminLink()));
             });
 
             services.AddScoped<IAuthorizationHandler, CanAccessStudentLinkHandler>();
             services.AddScoped<IAuthorizationHandler, CanAccessApproverLinkHandler>();
-            services.AddScoped<IAuthorizationHandler, CanAccessProfileLinkHandler>();    
+            services.AddScoped<IAuthorizationHandler, CanAccessProfileLinkHandler>();
+            services.AddScoped<IAuthorizationHandler, CanAccessAdminLinkHandler>();
 
             // Register EventLogRepository
             services.AddScoped<IEventLogRepository, EventLogRepository>();    

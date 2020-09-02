@@ -4,6 +4,6 @@ namespace lmsextreg.Constants
     {
         public static readonly string STUDENT = "STUDENT";
         public static readonly string APPROVER = "APPROVER";
-        public static readonly string SYSADMIN = "SYSADMIN";
+        public static readonly string ADMIN     = "ADMIN";
     }
 }

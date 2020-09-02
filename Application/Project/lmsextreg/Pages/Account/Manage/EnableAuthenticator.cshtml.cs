@@ -17,7 +17,7 @@ using lmsextreg.Services;
 
 namespace lmsextreg.Pages.Account.Manage
 {
-    [Authorize(Roles = "STUDENT,APPROVER")]
+    [Authorize(Roles = "STUDENT,APPROVER,ADMIN")]
     public class EnableAuthenticatorModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
