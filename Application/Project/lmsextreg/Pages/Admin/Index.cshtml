@@ -3,39 +3,35 @@
 
 <h1>User Admin</h1>
 
-<table id="FilteredEnrollmentRequests" class="table">
-    <thead>
-        <tr>
-            <th class="border bg-light" style="color:#004f87;">Email Address</th>
-            <th class="border bg-light" style="color:#004f87;">First Name</th>
-            <th class="border bg-light" style="color:#004f87;">Last Name</th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var item in Model.Users)
-        {
-            <tr>
-                <td>item.EmailAddress</td>
-                <td>item.FirstName</td>
-                <td>item.LastName</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<form  method="post">
+    <div class="form-row">
+        <div class="col">
+            <input type="email" asp-for="Input.EmailAddress" class="form-control" placeholder="email@email.com">
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
 
 <div class="container" style="border: 1px solid #004085;">
     <div class="row alert-primary" style="border-bottom: 1px solid #004085;">
         <div class="col  p-1 font-weight-bold text-center">Email Address</div>
         <div class="col  p-1 font-weight-bold text-center" style="border-left: 1px solid #004085;">First Name</div>
         <div class="col  p-1 font-weight-bold text-center" style="border-left: 1px solid #004085;">Last Name</div>
+        <div class="col  p-1 font-weight-bold text-center" style="border-left: 1px solid #004085;">Date Registered</div>
+        <div class="col  p-1 font-weight-bold text-center" style="border-left: 1px solid #004085;">Email Confirmed?</div>
+        <div class="col  p-1 font-weight-bold text-center" style="border-left: 1px solid #004085;">Two Factor Enabled?</div>
     </div>
     @foreach (var user in Model.Users)
     {
-        <div class="row">
-            <div class="col border p-1">@user.Email</div>
-            <div class="col border p-1">@user.FirstName</div>
-            <div class="col border p-1">@user.LastName</div>
-        </div>
+<div class="row">
+    <div class="col border p-1">@user.Email</div>
+    <div class="col border p-1">@user.FirstName</div>
+    <div class="col border p-1">@user.LastName</div>
+    <div class="col border p-1">@user.DateRegistered</div>
+    <div class="col border p-1">@user.EmailConfirmed</div>
+    <div class="col border p-1">@user.TwoFactorEnabled</div>
+</div>
     }
 </div>

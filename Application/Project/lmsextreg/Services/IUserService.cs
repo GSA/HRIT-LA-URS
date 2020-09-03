@@ -10,6 +10,6 @@ namespace lmsextreg.Services
     {
         ApplicationUser RetrieveByEmailAddress(string emailAddress);
 
-        IQueryable<ApplicationUser> RetrieveAllUsers();
+        List<ApplicationUser> RetrieveAllUsers();
     }
 }

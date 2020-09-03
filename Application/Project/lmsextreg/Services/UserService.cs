@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using lmsextreg.Repositories;
 using lmsextreg.Data;
 
@@ -21,9 +20,9 @@ namespace lmsextreg.Services
             return _userRepository.RetrieveUserByNormalizedEmail(emailAddress.ToUpper());
         }
 
-        public IQueryable<ApplicationUser> RetrieveAllUsers()
+        public List<ApplicationUser> RetrieveAllUsers()
         {
-            return _userRepository.RetrieveAllUsers();
+            return _userRepository.RetrieveAllUsers().ToList();
         }
     }
 }
