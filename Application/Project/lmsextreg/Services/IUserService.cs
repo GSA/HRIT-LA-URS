@@ -9,5 +9,7 @@ namespace lmsextreg.Services
     interface IUserService
     {
         ApplicationUser RetrieveByEmailAddress(string emailAddress);
+
+        IQueryable<ApplicationUser> RetrieveAllUsers();
     }
 }

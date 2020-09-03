@@ -1,5 +1,4 @@
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using lmsextreg.Data;
 
 namespace lmsextreg.Repositories
@@ -12,10 +11,14 @@ namespace lmsextreg.Repositories
         {
             _dbContext = dbContext;
         }
-        public ApplicationUser RetrieveByNormalizedEmail(string normalizedEmail)
+        public ApplicationUser RetrieveUserByNormalizedEmail(string normalizedEmail)
         {
-            return _dbContext.ApplicationUsers
-                    .Where(au => au.NormalizedEmail == normalizedEmail).SingleOrDefault();
+            return _dbContext.ApplicationUsers.Where(au => au.NormalizedEmail == normalizedEmail).SingleOrDefault();
+        }
+
+        public IQueryable<ApplicationUser> RetrieveAllUsers()
+        {
+            return _dbContext.ApplicationUsers.OrderBy(au => au.Email);
         }
     }
 }

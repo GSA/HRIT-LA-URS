@@ -185,6 +185,9 @@ namespace lmsextreg
             // Register ConfirmEmailService
             services.AddScoped<IConfirmEmailService, ConfirmEmailService>();
 
+            // Register UserService
+            services.AddScoped<IUserService, UserService>();
+
 
             // Configure Application Cookie
             // services.ConfigureApplicationCookie(options =>

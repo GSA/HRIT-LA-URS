@@ -18,7 +18,12 @@ namespace lmsextreg.Services
 
         public ApplicationUser RetrieveByEmailAddress(string emailAddress)
         {
-            return _userRepository.RetrieveByNormalizedEmail(emailAddress.ToUpper());
+            return _userRepository.RetrieveUserByNormalizedEmail(emailAddress.ToUpper());
+        }
+
+        public IQueryable<ApplicationUser> RetrieveAllUsers()
+        {
+            return _userRepository.RetrieveAllUsers();
         }
     }
 }
