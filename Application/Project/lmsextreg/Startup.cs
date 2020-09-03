@@ -171,7 +171,10 @@ namespace lmsextreg
             services.AddScoped<ISessionCookieRepository, SessionCookieRepository>();  
 
             // Register EmailTokenRepository
-            services.AddScoped<IEmailTokenRepository, EmailTokenRepository>();  
+            services.AddScoped<IEmailTokenRepository, EmailTokenRepository>();
+
+            // Register UserRepository
+            services.AddScoped<IUserRepository, UserRepository>();
 
             // Register EventLogService
             services.AddScoped<IEventLogService, EventLogService>(); 

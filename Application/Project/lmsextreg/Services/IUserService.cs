@@ -6,7 +6,7 @@ using lmsextreg.Data;
 
 namespace lmsextreg.Services
 {
-    interface IUserService
+    public interface IUserService
     {
         ApplicationUser RetrieveByEmailAddress(string emailAddress);
 
