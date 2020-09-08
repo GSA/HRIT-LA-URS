@@ -48,7 +48,7 @@ namespace lmsextreg.Pages.Admin
             }
             else
             {
-                ApplicationUser appUser = _userService.RetrieveByEmailAddress(emailAddress);
+                ApplicationUser appUser = _userService.RetrieveUserByEmailAddress(emailAddress);
                 this.Users = new List<ApplicationUser>();
                 this.Users.Add(appUser);
             }

@@ -16,6 +16,10 @@ namespace lmsextreg.Repositories
             return _dbContext.ApplicationUsers.Where(au => au.NormalizedEmail == normalizedEmail).SingleOrDefault();
         }
 
+        public ApplicationUser RetrieveUserByUserId(string userId)
+        {
+            return _dbContext.ApplicationUsers.Where(au => au.Id == userId).SingleOrDefault();
+        }
         public IQueryable<ApplicationUser> RetrieveAllUsers()
         {
             return _dbContext.ApplicationUsers.OrderBy(au => au.Email);

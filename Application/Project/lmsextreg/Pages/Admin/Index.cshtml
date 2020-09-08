@@ -27,7 +27,9 @@
     @foreach (var user in Model.Users)
     {
 <div class="row">
-    <div class="col border p-1">@user.Email</div>
+    <div class="col border p-1">
+        <a asp-page="./Update"  asp-route-UserId="@user.Id">@user.Email</a>
+    </div>
     <div class="col border p-1">@user.FirstName</div>
     <div class="col border p-1">@user.LastName</div>
     <div class="col border p-1">@user.DateRegistered</div>

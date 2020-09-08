@@ -1,0 +1,22 @@
+@page
+@model lmsextreg.Pages.Admin.UpdateModel
+
+<form method="POST">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label for="userFirstName">First Name:</label>
+            <input type="text" class="form-control" id="userFirstName" asp-for="AppUser.FirstName">
+            <span asp-validation-for="AppUser.FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="userMiddleName">Middle Name:</label>
+            <input type="text" class="form-control" id="userMiddleName" asp-for="AppUser.MiddleName">
+            <span asp-validation-for="AppUser.MiddleName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="userLastName">Last Name:</label>
+            <input type="text" class="form-control" id="userLastName" asp-for="AppUser.LastName">
+            <span asp-validation-for="AppUser.LastName" class="text-danger"></span>
+        </div>
+    </div>
+</form>

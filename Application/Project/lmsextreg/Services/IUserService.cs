@@ -8,8 +8,8 @@ namespace lmsextreg.Services
 {
     public interface IUserService
     {
-        ApplicationUser RetrieveByEmailAddress(string emailAddress);
-
+        ApplicationUser RetrieveUserByEmailAddress(string emailAddress);
+        ApplicationUser RetrieveUserByUserId(string userId);
         List<ApplicationUser> RetrieveAllUsers();
     }
 }
