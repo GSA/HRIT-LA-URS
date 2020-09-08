@@ -15,6 +15,7 @@ namespace lmsextreg.Pages.Admin
     public class UpdateModel : PageModel
     {
         private readonly IUserService _userService;
+        [BindProperty]
         public ApplicationUser AppUser { get ; set; }
     
         public UpdateModel(IUserService userSvc)
