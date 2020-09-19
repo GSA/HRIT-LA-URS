@@ -2,28 +2,67 @@
 @model lmsextreg.Pages.Admin.UpdateModel
 
 
-
-<div class="card w-75">
-    <h5 class="card-header">@Model.AppUser.FullName</h5>
-    <div class="card-body">
-        <form method="POST">
-            <div class="form-row">
+<h1 class="text-center">User Admin</h1>
+<div class="container">
+    <div class="card mx-auto w-75">
+        <h5 class="card-header text-center">@Model.AppUser.FirstMiddleLastName</h5>
+        <div class="card-body">
+            <div class="form-row border">
                 <div class="form-group col-md-4">
                     <label for="userFirstName" class="mb-0">First Name:</label>
-                    <input type="text" class="form-control mt-0" id="userFirstName" asp-for="AppUser.FirstName" readonly>
-                    <span asp-validation-for="AppUser.FirstName" class="text-danger"></span>
+                    <div>@Model.AppUser.FirstName</div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="userMiddleName" class="mb-0">Middle Name:</label>
-                    <input type="text" class="form-control mt-0" id="userMiddleName" asp-for="AppUser.MiddleName" readonly>
-                    <span asp-validation-for="AppUser.MiddleName" class="text-danger"></span>
+                    <div class="bg-danger mb-0">@Model.AppUser.MiddleName</div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="userLastName" class="mb-0">Last Name:</label>
-                    <input type="text" class="form-control mt-0" id="userLastName" asp-for="AppUser.LastName" readonly>
-                    <span asp-validation-for="AppUser.LastName" class="text-danger"></span>
+                    <div>@Model.AppUser.LastName</div>
                 </div>
             </div>
-        </form>
+            <div class="form-row border mt-3">
+                <div class="form-group col-md-4">
+                    <label for="userFirstName" class="mb-0">Email Address:</label>
+                    <div>@Model.AppUser.Email</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userMiddleName" class="mb-0">Agency:</label>
+                    <div>@Model.AppUser.AgencyID</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userLastName" class="mb-0">Job Title:</label>
+                    <div>@Model.AppUser.JobTitle</div>
+                </div>
+            </div>
+            <div class="form-row border mt-3">
+                <div class="form-group col-md-4">
+                    <label for="userFirstName" class="mb-0">Date Registered:</label>
+                    <div>@Model.AppUser.DateRegistered</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userMiddleName" class="mb-0">Date Account Expires:</label>
+                    <div>@Model.AppUser.DateAccountExpires</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userLastName" class="mb-0">Date Password Expires:</label>
+                    <div>@Model.AppUser.DatePasswordExpires</div>
+                </div>
+            </div>
+            <div class="form-row border mt-3">
+                <div class="form-group col-md-4">
+                    <label for="userFirstName" class="mb-0">Account Locked?:</label>
+                    <div>@Model.AppUser.LockoutEnd</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userMiddleName" class="mb-0">Email Confirmed:</label>
+                    <div>@Model.AppUser.EmailConfirmed</div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="userLastName" class="mb-0">Two Factor Enabled:</label>
+                    <div>@Model.AppUser.TwoFactorEnabled</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

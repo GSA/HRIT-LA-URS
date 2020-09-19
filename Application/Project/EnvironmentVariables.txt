@@ -1,3 +1,11 @@
+#########################################################################################
+# Citrix DTDv5-3
+#########################################################################################
+set APPSETTINGS_DIRECTORY=E:\Developers\LeeT\Projects\MyProjects\URS\AppSettings
+set LOGFILE_DIRECTORY=D:\Users\LTTrent\Dev\Projects\MyProjects\LMS\Logs
+
+echo %APPSETTINGS_DIRECTORY%
+echo %LOGFILE_DIRECTORY%
 
 #########################################################################################
 # Lee's Win10 (Windows CMD)

@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,24 @@ namespace lmsextreg.Data
             get
             {
                 return LastName + ", " + FirstName;
+            }
+        }
+
+        public string FirstMiddleLastName
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(this.FirstName);
+                sb.Append(" ");
+                if ( String.IsNullOrEmpty(this.MiddleName) 
+                        || String.IsNullOrWhiteSpace(this.MiddleName) )
+                {
+                    sb.Append(this.MiddleName);
+                    sb.Append(" ");
+                }
+                sb.Append(this.LastName);
+                return sb.ToString();
             }
         }
 

@@ -10,8 +10,9 @@ using lmsextreg.Data;
 
 
 namespace lmsextreg.Pages.Admin
-{ 
-    [Authorize(Roles = "ADMIN")]
+{
+    //[Authorize(Roles = "ADMIN")]
+    [AllowAnonymous]
     public class UpdateModel : PageModel
     {
         private readonly IUserService _userService;
