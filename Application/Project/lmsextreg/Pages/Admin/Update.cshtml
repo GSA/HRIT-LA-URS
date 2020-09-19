@@ -21,17 +21,23 @@
                 </div>
             </div>
             <div class="form-row border-top pt-3 bg-light">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="userFirstName" class="mb-0">Email Address:</label>
                     <div>@Model.AppUser.Email</div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="userMiddleName" class="mb-0">Agency:</label>
-                    <div>@Model.AppUser.Agency.AgencyName</div>
-                </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="userLastName" class="mb-0">Job Title:</label>
                     <div>@Model.AppUser.JobTitle</div>
+                </div>
+            </div>
+            <div class="form-row border-top pt-3 bg-light">
+                <div class="form-group col-md-6">
+                    <label for="userFirstName" class="mb-0">Agency:</label>
+                    <div>@Model.AppUser.SubAgency.Agency.AgencyName</div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="userMiddleName" class="mb-0">Sub-Agency:</label>
+                    <div>@Model.AppUser.SubAgency.SubAgencyName</div>
                 </div>
             </div>
             <div class="form-row border-top pt-3">

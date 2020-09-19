@@ -19,7 +19,7 @@ namespace lmsextreg.Repositories
 
         public ApplicationUser RetrieveUserByUserId(string userId)
         {
-            return _dbContext.ApplicationUsers.Where(au => au.Id == userId).Include(au => au.Agency).SingleOrDefault();
+            return _dbContext.ApplicationUsers.Where(au => au.Id == userId).Include(au => au.SubAgency).ThenInclude(sa => sa.Agency).SingleOrDefault();
         }
         public IQueryable<ApplicationUser> RetrieveAllUsers()
         {
