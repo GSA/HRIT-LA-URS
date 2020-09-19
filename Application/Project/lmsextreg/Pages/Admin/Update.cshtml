@@ -50,8 +50,8 @@
             </div>
             <div class="form-row border-top pt-3 pb-0">
                 <div class="form-group col-md-4">
-                    <label for="userFirstName" class="mb-0">Account Locked?:</label>
-                    <div>@Model.AppUser.LockoutEnd</div>
+                    <label for="userFirstName" class="mb-0">Account Locked:</label>
+                    <div>@Model.AppUser.IsLockedOut</div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="userMiddleName" class="mb-0">Email Confirmed:</label>

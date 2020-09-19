@@ -72,6 +72,14 @@ namespace lmsextreg.Data
             }
         }
 
+        public bool IsLockedOut
+        {
+            get
+            {
+                return (this.LockoutEnd != null);
+            }
+        }
+
         ///////////////////////////////////
         // Navigation Property
         ///////////////////////////////////        
