@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using lmsextreg.Data;
 
 namespace lmsextreg.Repositories
@@ -18,7 +19,7 @@ namespace lmsextreg.Repositories
 
         public ApplicationUser RetrieveUserByUserId(string userId)
         {
-            return _dbContext.ApplicationUsers.Where(au => au.Id == userId).SingleOrDefault();
+            return _dbContext.ApplicationUsers.Where(au => au.Id == userId).Include(au => au.Agency).SingleOrDefault();
         }
         public IQueryable<ApplicationUser> RetrieveAllUsers()
         {
