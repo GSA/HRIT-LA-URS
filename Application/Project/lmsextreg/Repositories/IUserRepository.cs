@@ -8,5 +8,6 @@ namespace lmsextreg.Repositories
         ApplicationUser RetrieveUserByNormalizedEmail(string normalizedEmail);
         ApplicationUser RetrieveUserByUserId(string userId);
         IQueryable<ApplicationUser> RetrieveAllUsers();
+        int UpdateUser(ApplicationUser appUser);
     }
 }

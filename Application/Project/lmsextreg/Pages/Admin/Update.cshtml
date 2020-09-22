@@ -1,5 +1,5 @@
 @page
-@model lmsextreg.Pages.Admin.UpdateModel
+@model UpdateModel
 
 
 <h1 class="text-center">@Model.AppUser.FirstMiddleLastName</h1>
@@ -80,7 +80,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Unlock Account</h5>
                     <p class="card-text">User will be able to login once their account has been unlocked.</p>
-                    <a href="#" class="btn btn-primary">Unlock</a>
+                    <form action="javascript:void(0);" method="POST" onsubmit="javascript:unlockUserAccount('@Model.AppUser.Id');">
+                        <input type="submit" class="btn btn-primary" value="Unlock" />
+                    </form>
                 </div>
             </div>
         </div>
@@ -106,3 +108,8 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/user_account_unlock.js"></script>
+
+}

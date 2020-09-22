@@ -11,5 +11,6 @@ namespace lmsextreg.Services
         ApplicationUser RetrieveUserByEmailAddress(string emailAddress);
         ApplicationUser RetrieveUserByUserId(string userId);
         List<ApplicationUser> RetrieveAllUsers();
+        int UnlockUser(string userId);
     }
 }

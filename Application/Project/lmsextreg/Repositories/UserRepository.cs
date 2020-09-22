@@ -25,5 +25,11 @@ namespace lmsextreg.Repositories
         {
             return _dbContext.ApplicationUsers.OrderBy(au => au.Email);
         }
+
+        public int UpdateUser(ApplicationUser appUser)
+        {
+            _dbContext.ApplicationUsers.Update(appUser);
+            return _dbContext.SaveChanges();
+        }
     }
 }

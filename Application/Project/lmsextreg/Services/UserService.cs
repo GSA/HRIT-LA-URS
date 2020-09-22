@@ -29,5 +29,12 @@ namespace lmsextreg.Services
         {
             return _userRepository.RetrieveAllUsers().ToList();
         }
+
+        public int UnlockUser(string userId)
+        {
+            ApplicationUser appUser = this.RetrieveUserByUserId(userId);
+            appUser.LockoutEnd = null;
+            return _userRepository.UpdateUser(appUser);
+        }
     }
 }

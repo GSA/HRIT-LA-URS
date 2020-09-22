@@ -1,7 +1,5 @@
 using System;
 using System.Text;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -53,6 +51,33 @@ namespace lmsextreg.Pages.Admin
 
             Console.WriteLine(logSnippet + $"Returning from _userService.RetrieveUserByUserId()");
             Console.WriteLine(logSnippet + $"(this.AppUser == null): '{ this.AppUser== null}'");
+        }
+
+        public JsonResult OnPostUnlockUserAccount(string userId)
+        {
+            string logSnippet = new StringBuilder("[")
+                    .Append(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"))
+                    .Append("][Admin][UpdateModel][OnPostUnlockUserAccount] => ")
+                    .ToString();
+
+            Console.WriteLine(logSnippet + $"(userId: '{userId}'");
+            int rowsUpdated = _userService.UnlockUser(userId);
+            Console.WriteLine(logSnippet + $"(rowsUpdated: '{rowsUpdated}'");
+            return new JsonResult(rowsUpdated);
+        }
+
+        public JsonResult onGetIsUserAccountLocked(string userId)
+        {
+            string logSnippet = new StringBuilder("[")
+                    .Append(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"))
+                    .Append("][Admin][UpdateModel][onGetIsUserAccountLocked] => ")
+                    .ToString();
+
+            Console.WriteLine(logSnippet + $"(userId): '{userId}'");
+            ApplicationUser appUser = _userService.RetrieveUserByUserId(userId);
+            Console.WriteLine(logSnippet + $"(appUser == null)...: '{appUser == null}'");
+            Console.WriteLine(logSnippet + $"(appUser.LockoutEnd): '{appUser.LockoutEnd}'");
+            return new JsonResult(appUser.LockoutEnd != null);
         }
     }
 }
