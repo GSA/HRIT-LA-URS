@@ -39,6 +39,21 @@ function isUserAccountLocked(userId) {
         success: function (data) {
             //console.log(`[user_unlock.js][isUserAccountLocked][success] => (data): ${data}`);
             console.log(`[user_unlock.js][isUserAccountLocked][success] => (data): ${data}`);
+            processResponse();
+
          }
     });
+}
+
+function processResponse() {
+    let userAccountModalTitle = document.getElementById("userAccountModalTitle");
+    if (userAccountModalTitle) {
+        userAccountModalTitle.innerText = "User Account Unlocked";
+    }
+    if (userAccountModelBody) {
+        userAccountModelBody.innerText = "User Account Unlocked [Add name and email address]";
+    }
+    if (userAccountModalButton) {
+        userAccountModalButton.click();
+    }
 }

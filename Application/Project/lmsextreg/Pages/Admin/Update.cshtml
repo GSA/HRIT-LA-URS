@@ -1,115 +1,136 @@
 @page
 @model UpdateModel
 
+<!-- Button trigger modal -->
+<button type="button" id="userAccountModalButton" style="display:none" class=".d-none" data-toggle="modal" data-target="#userAccountModal"></button>
 
-<h1 class="text-center">@Model.AppUser.FirstMiddleLastName</h1>
-<div class="container">
-    <div class="card mx-auto w-75">
-        <div class="card-body pb-0">
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="userFirstName" class="mb-0">First Name:</label>
-                    <div>@Model.AppUser.FirstName</div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="userMiddleName" class="mb-0">Middle Name:</label>
-                    <div class="bg-danger mb-0">@Model.AppUser.MiddleName</div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="userLastName" class="mb-0">Last Name:</label>
-                    <div>@Model.AppUser.LastName</div>
-                </div>
+<!-- Modal -->
+<div class="modal show" id="userAccountModal" tabindex="-1" role="dialog" aria-labelledby="userAccountModalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="userAccountModalTitle">TITLE GOES HERE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="form-row border-top pt-3 bg-light">
-                <div class="form-group col-md-6">
-                    <label for="userFirstName" class="mb-0">Email Address:</label>
-                    <div>@Model.AppUser.Email</div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="userLastName" class="mb-0">Job Title:</label>
-                    <div>@Model.AppUser.JobTitle</div>
-                </div>
-            </div>
-            <div class="form-row border-top pt-3">
-                <div class="form-group col-md-6">
-                    <label for="userFirstName" class="mb-0">Agency:</label>
-                    <div>@Model.AppUser.SubAgency.Agency.AgencyName</div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="userMiddleName" class="mb-0">Sub-Agency:</label>
-                    <div>@Model.AppUser.SubAgency.SubAgencyName</div>
-                </div>
-            </div>
-            <div class="form-row border-top pt-3 bg-light">
-                <div class="form-group col-md-4">
-                    <label for="userFirstName" class="mb-0">Date Registered:</label>
-                    <div>@Model.AppUser.DateRegistered</div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="userMiddleName" class="mb-0">Date Account Expires:</label>
-                    <div>@Model.AppUser.DateAccountExpires</div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="userLastName" class="mb-0">Date Password Expires:</label>
-                    <div>@Model.AppUser.DatePasswordExpires</div>
-                </div>
-            </div>
-            <div class="form-row border-top pt-3 pb-0">
-                <div class="form-group col-md-4">
-                    <label for="userFirstName" class="mb-0">Account Locked:</label>
-                    <div>@Model.AppUser.IsLockedOut</div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="userMiddleName" class="mb-0">Email Confirmed:</label>
-                    <div>@Model.AppUser.EmailConfirmed</div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="userLastName" class="mb-0">Two Factor Enabled:</label>
-                    <div>@Model.AppUser.TwoFactorEnabled</div>
-                </div>
+            <div id="userAccountModelBody" class="modal-body">TEXT GOES HERE</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
             </div>
         </div>
     </div>
 </div>
 
-<h2 class="text-center mt-4">Available Actions</h2>
-<div class="container w-75">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Unlock Account</h5>
-                    <p class="card-text">User will be able to login once their account has been unlocked.</p>
-                    <form action="javascript:void(0);" method="POST" onsubmit="javascript:unlockUserAccount('@Model.AppUser.Id');">
-                        <input type="submit" class="btn btn-primary" value="Unlock" />
-                    </form>
+    <h1 class="text-center">@Model.AppUser.FirstMiddleLastName</h1>
+    <div class="container">
+        <div class="card mx-auto w-75">
+            <div class="card-body pb-0">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="userFirstName" class="mb-0">First Name:</label>
+                        <div>@Model.AppUser.FirstName</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="userMiddleName" class="mb-0">Middle Name:</label>
+                        <div class="bg-danger mb-0">@Model.AppUser.MiddleName</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="userLastName" class="mb-0">Last Name:</label>
+                        <div>@Model.AppUser.LastName</div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Confirm Email Address</h5>
-                    <p class="card-text">User will be able to move forward with the registration process once their email address has been confirmed.</p>
-                    <a href="#" class="btn btn-primary">Confirm</a>
+                <div class="form-row border-top pt-3 bg-light">
+                    <div class="form-group col-md-6">
+                        <label for="userFirstName" class="mb-0">Email Address:</label>
+                        <div>@Model.AppUser.Email</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="userLastName" class="mb-0">Job Title:</label>
+                        <div>@Model.AppUser.JobTitle</div>
+                    </div>
+                </div>
+                <div class="form-row border-top pt-3">
+                    <div class="form-group col-md-6">
+                        <label for="userFirstName" class="mb-0">Agency:</label>
+                        <div>@Model.AppUser.SubAgency.Agency.AgencyName</div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="userMiddleName" class="mb-0">Sub-Agency:</label>
+                        <div>@Model.AppUser.SubAgency.SubAgencyName</div>
+                    </div>
+                </div>
+                <div class="form-row border-top pt-3 bg-light">
+                    <div class="form-group col-md-4">
+                        <label for="userFirstName" class="mb-0">Date Registered:</label>
+                        <div>@Model.AppUser.DateRegistered</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="userMiddleName" class="mb-0">Date Account Expires:</label>
+                        <div>@Model.AppUser.DateAccountExpires</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="userLastName" class="mb-0">Date Password Expires:</label>
+                        <div>@Model.AppUser.DatePasswordExpires</div>
+                    </div>
+                </div>
+                <div class="form-row border-top pt-3 pb-0">
+                    <div class="form-group col-md-4">
+                        <label for="userFirstName" class="mb-0">Account Locked:</label>
+                        <div>@Model.AppUser.IsLockedOut</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="userMiddleName" class="mb-0">Email Confirmed:</label>
+                        <div>@Model.AppUser.EmailConfirmed</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="userLastName" class="mb-0">Two Factor Enabled:</label>
+                        <div>@Model.AppUser.TwoFactorEnabled</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row my-4">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Disable 2-Factor Authentication</h5>
-                    <p class="card-text">This will allow user to re-establish 2-factor authentication.</p>
-                    <a href="#" class="btn btn-primary">Disable</a>
+
+    <h2 class="text-center mt-4">Available Actions</h2>
+    <div class="container w-75">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Unlock Account</h5>
+                        <p class="card-text">User will be able to login once their account has been unlocked.</p>
+                        <form action="javascript:void(0);" method="POST" onsubmit="javascript:unlockUserAccount('@Model.AppUser.Id');">
+                            <input type="submit" class="btn btn-primary" value="Unlock" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Confirm Email Address</h5>
+                        <p class="card-text">User will be able to move forward with the registration process once their email address has been confirmed.</p>
+                        <a href="#" class="btn btn-primary">Confirm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row my-4">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Disable 2-Factor Authentication</h5>
+                        <p class="card-text">This will allow user to re-establish 2-factor authentication.</p>
+                        <a href="#" class="btn btn-primary">Disable</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    <script src="~/js/user_account_unlock.js"></script>
+    @section Scripts {
+        <script src="~/js/user_account_unlock.js"></script>
 
-}
+    }
