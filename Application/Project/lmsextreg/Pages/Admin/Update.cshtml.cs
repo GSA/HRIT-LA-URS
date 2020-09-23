@@ -60,7 +60,8 @@ namespace lmsextreg.Pages.Admin
                 string title = "Unlock Account";
                 string text = "User will be able to login once their account has been unlocked";
                 string buttonLabel = "Unlock";
-                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel);
+                string onSubmit = $"javascript:unlockUserAccount('{this.AppUser.Id}');";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit);
                 this.AvailableActionCardViewModels.Add(cardVM);
             }
             if (this.AppUser.EmailConfirmed == false)
@@ -68,7 +69,8 @@ namespace lmsextreg.Pages.Admin
                 string title    = "Confirm Email Address";
                 string text     = "User will be able to move forward with the registration process once their email address has been confirmed.";
                 string buttonLabel = "Confirm";
-                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel);
+                string onSubmit = $"javascript:confirmEmailAddress('{this.AppUser.Id}');";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit);
                 this.AvailableActionCardViewModels.Add(cardVM);
             }
             if (this.AppUser.TwoFactorEnabled == true)
@@ -76,7 +78,8 @@ namespace lmsextreg.Pages.Admin
                 string title = "Disable 2-Factor Authentication";
                 string text = "This will allow user to re-establish 2-factor authentication.";
                 string buttonLabel = "Disable";
-                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel);
+                string onSubmit = $"javascript:disableTwoFactor('{this.AppUser.Id}');";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit);
                 this.AvailableActionCardViewModels.Add(cardVM);
             }
 

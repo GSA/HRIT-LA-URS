@@ -77,7 +77,7 @@
             <div class="form-row border-top pt-3 pb-0">
                 <div class="form-group col-md-4">
                     <label for="userFirstName" class="mb-0">Account Locked:</label>
-                    <div>@Model.AppUser.IsLockedOut</div>
+                    <div id="userIsLockedOut">@Model.AppUser.IsLockedOut</div>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="userMiddleName" class="mb-0">Email Confirmed:</label>
@@ -111,7 +111,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">@card.Title</h5>
                                 <p class="card-text">@card.Text</p>
-                                <a href="#" class="btn btn-primary">@card.ButtonLabel</a>
+                                <form action="javascript:void(0);" method="POST" onsubmit="@card.OnSubmit">
+                                    <input type="submit" class="btn btn-primary" value="@card.ButtonLabel" />
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -163,6 +165,7 @@
 
 
 @section Scripts {
-    <script src="~/js/user_account_unlock.js"></script>
-
+    <script src="~/js/user_unlock_account.js"></script>
+    <script src="~/js/user_confirm_email.js"></script>
+    <script src="~/js/user_disable_two_factor.js"></script>
 }
