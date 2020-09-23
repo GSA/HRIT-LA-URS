@@ -1,11 +1,13 @@
 using System;
 using System.Text;
+using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using lmsextreg.Services;
 using lmsextreg.Data;
-
+using lmsextreg.ViewModels;
+using System.Collections.Generic;
 
 namespace lmsextreg.Pages.Admin
 {
@@ -16,7 +18,10 @@ namespace lmsextreg.Pages.Admin
         private readonly IUserService _userService;
         [BindProperty]
         public ApplicationUser AppUser { get ; set; }
-    
+
+        public IList<AvailableActionCardViewModel> AvailableActionCardViewModels;
+
+
         public UpdateModel(IUserService userSvc)
         {
             string logSnippet = new StringBuilder("[")
@@ -48,6 +53,32 @@ namespace lmsextreg.Pages.Admin
             Console.WriteLine(logSnippet + $"Calling _userService.RetrieveUserByUserId()");
 
             this.AppUser = _userService.RetrieveUserByUserId(userId);
+
+            this.AvailableActionCardViewModels = new List<AvailableActionCardViewModel>();
+            if (this.AppUser.LockoutEnd != null && this.AppUser.LockoutEnd > DateTime.Now)
+            {
+                string title = "Unlock Account";
+                string text = "User will be able to login once their account has been unlocked";
+                string buttonLabel = "Unlock";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel);
+                this.AvailableActionCardViewModels.Add(cardVM);
+            }
+            if (this.AppUser.EmailConfirmed == false)
+            {
+                string title    = "Confirm Email Address";
+                string text     = "User will be able to move forward with the registration process once their email address has been confirmed.";
+                string buttonLabel = "Confirm";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel);
+                this.AvailableActionCardViewModels.Add(cardVM);
+            }
+            if (this.AppUser.TwoFactorEnabled == true)
+            {
+                string title = "Disable 2-Factor Authentication";
+                string text = "This will allow user to re-establish 2-factor authentication.";
+                string buttonLabel = "Disable";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel);
+                this.AvailableActionCardViewModels.Add(cardVM);
+            }
 
             Console.WriteLine(logSnippet + $"Returning from _userService.RetrieveUserByUserId()");
             Console.WriteLine(logSnippet + $"(this.AppUser == null): '{ this.AppUser== null}'");
