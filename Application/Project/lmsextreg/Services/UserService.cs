@@ -36,5 +36,12 @@ namespace lmsextreg.Services
             appUser.LockoutEnd = null;
             return _userRepository.UpdateUser(appUser);
         }
+        public int ConfirmEmailAddress(string userId)
+        {
+            ApplicationUser appUser = this.RetrieveUserByUserId(userId);
+            appUser.EmailConfirmed = true;
+            return _userRepository.UpdateUser(appUser);
+        }
+
     }
 }

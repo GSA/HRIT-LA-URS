@@ -72,13 +72,18 @@ function processCard() {
 
 
 function processPopup() {
+
     let userAccountModalTitle = document.getElementById("userAccountModalTitle");
     if (userAccountModalTitle) {
         userAccountModalTitle.innerText = "Account Unlocked";
     }
+
+    let userAccountModelBody = document.getElementById("userAccountModelBody");
     if (userAccountModelBody) {
         userAccountModelBody.innerText = "This user's account has been unlocked.";
     }
+
+    let userAccountModalButton = document.getElementById("userAccountModalButton");
     if (userAccountModalButton) {
         userAccountModalButton.click();
     }
