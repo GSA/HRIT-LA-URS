@@ -57,29 +57,35 @@ namespace lmsextreg.Pages.Admin
             this.AvailableActionCardViewModels = new List<AvailableActionCardViewModel>();
             if (this.AppUser.LockoutEnd != null && this.AppUser.LockoutEnd > DateTime.Now)
             {
-                string title = "Unlock Account";
-                string text = "User will be able to login once their account has been unlocked";
-                string buttonLabel = "Unlock";
-                string onSubmit = $"javascript:unlockUserAccount('{this.AppUser.Id}');";
-                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit);
+                string title        = "Unlock Account";
+                string text         = "User will be able to login once their account has been unlocked";
+                string buttonLabel  = "Unlock";
+                string onSubmit     = $"javascript:unlockUserAccount('{this.AppUser.Id}');";
+                string cardId       = "unlockAccountCard";
+                string buttonId     = "unlockAccountButton";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit, cardId, buttonId);
                 this.AvailableActionCardViewModels.Add(cardVM);
             }
             if (this.AppUser.EmailConfirmed == false)
             {
-                string title    = "Confirm Email Address";
-                string text     = "User will be able to move forward with the registration process once their email address has been confirmed.";
-                string buttonLabel = "Confirm";
-                string onSubmit = $"javascript:confirmEmailAddress('{this.AppUser.Id}');";
-                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit);
+                string title        = "Confirm Email Address";
+                string text         = "User will be able to move forward with the registration process once their email address has been confirmed.";
+                string buttonLabel  = "Confirm";
+                string onSubmit     = $"javascript:confirmEmailAddress('{this.AppUser.Id}');";
+                string cardId       = "confirmEmailCard";
+                string buttonId     = "confirmEmailButton";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit, cardId, buttonId);
                 this.AvailableActionCardViewModels.Add(cardVM);
             }
             if (this.AppUser.TwoFactorEnabled == true)
             {
-                string title = "Disable 2-Factor Authentication";
-                string text = "This will allow user to re-establish 2-factor authentication.";
-                string buttonLabel = "Disable";
-                string onSubmit = $"javascript:disableTwoFactor('{this.AppUser.Id}');";
-                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit);
+                string title        = "Disable 2-Factor Authentication";
+                string text         = "This will allow user to re-establish 2-factor authentication.";
+                string buttonLabel  = "Disable";
+                string onSubmit     = $"javascript:disableTwoFactor('{this.AppUser.Id}');";
+                string cardId       = "disableTwoFactorCard";
+                string buttonId     = "disableTwoFactorButton";
+                AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit, cardId, buttonId);
                 this.AvailableActionCardViewModels.Add(cardVM);
             }
 

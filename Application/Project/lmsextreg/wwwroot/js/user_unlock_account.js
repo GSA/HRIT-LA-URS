@@ -51,8 +51,25 @@ function processResponse(responseData) {
     if (userIsLockedOut) {
         userIsLockedOut.innerText = responseData;
     }
+
+    processCard();
     processPopup();
 }
+
+function processCard() {
+
+    let unlockAccountCard = document.getElementById("unlockAccountCard");
+    if (unlockAccountCard) {   
+        unlockAccountCard.setAttribute("class", "card bg-light text-secondary")
+    }
+
+    let unlockAccountButton = document.getElementById("unlockAccountButton");
+    if (unlockAccountButton) {
+        unlockAccountButton.setAttribute("class", "btn btn-secondary");
+        unlockAccountButton.disabled = true;
+    }
+}
+
 
 function processPopup() {
     let userAccountModalTitle = document.getElementById("userAccountModalTitle");
