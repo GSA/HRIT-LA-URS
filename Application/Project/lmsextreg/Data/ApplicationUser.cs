@@ -75,7 +75,7 @@ namespace lmsextreg.Data
         {
             get
             {
-                return (this.LockoutEnd != null);
+                return (this.LockoutEnd != null && this.LockoutEnd > DateTime.Now);
             }
         }
 

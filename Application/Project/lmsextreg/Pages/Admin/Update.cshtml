@@ -1,7 +1,5 @@
 @page
 @model UpdateModel
-using lmsextreg.ViewModels;
-
 <!-- Button trigger modal -->
 <button type="button" id="userAccountModalButton" style="display:none" class=".d-none" data-toggle="modal" data-target="#userAccountModal"></button>
 
@@ -94,34 +92,36 @@ using lmsextreg.ViewModels;
     </div>
 </div>
 
-<h2 class="text-center mt-4">Available Actions</h2>
-
-<div class="container w-75">
-    <div class="row">
-        @{
-            int count = 0;
-            foreach (lmsextreg.ViewModels.AvailableActionCardViewModel card in Model.AvailableActionCardViewModels)
-            {
-                if (count++ % 2 == 0)
+@if (Model.AvailableActionCardViewModels != null && Model.AvailableActionCardViewModels.Count > 0)
+{
+    <h2 class="text-center mt-4">Available Actions</h2>
+    <div class="container w-75">
+        <div class="row">
+            @{
+                int count = 0;
+                foreach (lmsextreg.ViewModels.AvailableActionCardViewModel card in Model.AvailableActionCardViewModels)
                 {
-                @:</div><div class="row">
-                }
+                    if (count++ % 2 == 0)
+                    {
+                    @:</div><div class="row my-4">
+                    }
 
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">@card.Title</h5>
-                            <p class="card-text">@card.Text</p>
-                            <a href="#" class="btn btn-primary">@card.ButtonLabel</a>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@card.Title</h5>
+                                <p class="card-text">@card.Text</p>
+                                <a href="#" class="btn btn-primary">@card.ButtonLabel</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                }
 
             }
-
-        }
+        </div>
     </div>
-</div>
+}
 
 <!--
     <div class="container w-75">
