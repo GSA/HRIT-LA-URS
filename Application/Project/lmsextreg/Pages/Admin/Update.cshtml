@@ -21,9 +21,7 @@
         </div>
     </div>
 </div>
-
-<h1 class="text-center">@Model.AppUser.FirstMiddleLastName</h1>
-
+<h1 class="text-center text-dark">@Model.AppUser.FirstMiddleLastName</h1>
 <!--
 <div class="container">
     <div class="card mx-auto w-75">
@@ -94,7 +92,7 @@
     </div>
 -->
 <div class="container w-75">
-    <table class="table table-bordered mx-auto" style="color: #004f87;">
+    <table class="table table-bordered mx-auto">
         <thead>
             <tr class="bg-light">
                 <th colspan="2">First Name:</th>
@@ -169,80 +167,82 @@
 
 
 
-    @if (Model.AvailableActionCardViewModels != null && Model.AvailableActionCardViewModels.Count > 0)
-    {
-        <h3 class="text-center mt-4">Available Actions</h3>
-        <div class="container w-75">
-            <div class="row">
-                @{
-                    int count = 0;
-                    foreach (lmsextreg.ViewModels.AvailableActionCardViewModel card in Model.AvailableActionCardViewModels)
+@if (Model.AvailableActionCardViewModels != null && Model.AvailableActionCardViewModels.Count > 0)
+{
+    <div class="container w-75 mt-5">
+        <hr />
+        <h3 class="text-center">Available Actions</h3>
+        <hr class="mb-0" />
+        <div class="row mt-0">
+            @{
+                int count = 0;
+                foreach (lmsextreg.ViewModels.AvailableActionCardViewModel card in Model.AvailableActionCardViewModels)
+                {
+                    if (count++ % 2 == 0)
                     {
-                        if (count++ % 2 == 0)
-                        {
-                        @:</div><div class="row my-4">
-                        }
-
-                        <div class="col-sm-6">
-                            <div id="@card.CardId" class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">@card.Title</h5>
-                                    <p class="card-text">@card.Text</p>
-                                    <form action="javascript:void(0);" method="POST" onsubmit="@card.OnSubmit">
-                                        <input id="@card.ButtonId" type="submit" class="btn btn-primary" value="@card.ButtonLabel" />
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
+                    @:</div><div class="row my-4">
                     }
 
+                    <div class="col-sm-6">
+                        <div id="@card.CardId" class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@card.Title</h5>
+                                <p class="card-text">@card.Text</p>
+                                <form action="javascript:void(0);" method="POST" onsubmit="@card.OnSubmit">
+                                    <input id="@card.ButtonId" type="submit" class="btn btn-primary" value="@card.ButtonLabel" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                 }
-            </div>
-        </div>
-    }
 
-    <!--
-        <div class="container w-75">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card bg-light text-secondary">
-                        <div class="card-body">
-                            <h5 class="card-title">Unlock Account</h5>
-                            <p class="card-text">User will be able to login once their account has been unlocked.</p>
-                            <form action="javascript:void(0);" method="POST" onsubmit="javascript:unlockUserAccount('@Model.AppUser.Id');">
-                                <input type="submit" class="btn btn-secondary" value="Unlock" disabled />
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Confirm Email Address</h5>
-                            <p class="card-text">User will be able to move forward with the registration process once their email address has been confirmed.</p>
-                            <a href="#" class="btn btn-primary">Confirm</a>
-                        </div>
+            }
+        </div>
+    </div>
+}
+
+<!--
+    <div class="container w-75">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card bg-light text-secondary">
+                    <div class="card-body">
+                        <h5 class="card-title">Unlock Account</h5>
+                        <p class="card-text">User will be able to login once their account has been unlocked.</p>
+                        <form action="javascript:void(0);" method="POST" onsubmit="javascript:unlockUserAccount('@Model.AppUser.Id');">
+                            <input type="submit" class="btn btn-secondary" value="Unlock" disabled />
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="row my-4">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Disable 2-Factor Authentication</h5>
-                            <p class="card-text">This will allow user to re-establish 2-factor authentication.</p>
-                            <a href="#" class="btn btn-primary">Disable</a>
-                        </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Confirm Email Address</h5>
+                        <p class="card-text">User will be able to move forward with the registration process once their email address has been confirmed.</p>
+                        <a href="#" class="btn btn-primary">Confirm</a>
                     </div>
                 </div>
             </div>
         </div>
-    -->
+        <div class="row my-4">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Disable 2-Factor Authentication</h5>
+                        <p class="card-text">This will allow user to re-establish 2-factor authentication.</p>
+                        <a href="#" class="btn btn-primary">Disable</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
 
 
-    @section Scripts {
-        <script src="~/js/user_unlock_account.js"></script>
-        <script src="~/js/user_confirm_email.js"></script>
-        <script src="~/js/user_disable_two_factor.js"></script>
-    }
+@section Scripts {
+    <script src="~/js/user_unlock_account.js"></script>
+    <script src="~/js/user_confirm_email.js"></script>
+    <script src="~/js/user_disable_two_factor.js"></script>
+}
