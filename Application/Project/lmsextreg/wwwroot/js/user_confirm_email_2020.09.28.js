@@ -53,6 +53,8 @@ function processIsEmailAddressConfirmedResponse(responseData) {
     let emailAddressIsConfirmed = document.getElementById("emailAddressIsConfirmed");
     if (emailAddressIsConfirmed) {
         emailAddressIsConfirmed.innerText = responseData;
+        emailAddressIsConfirmed.style.backgroundColor = "rgb(40, 167, 69, 0.30)";
+        emailAddressIsConfirmed.setAttribute("class", "border border-success");
     }
 
     processEmailConfirmedCard();
@@ -63,7 +65,7 @@ function processEmailConfirmedCard() {
 
     let confirmEmailCard = document.getElementById("confirmEmailCard");
     if (confirmEmailCard) {
-        unlockAccountCard.setAttribute("class", "card bg-light text-secondary")
+        confirmEmailCard.setAttribute("class", "card bg-light text-secondary");
     }
 
     let confirmEmailButton = document.getElementById("confirmEmailButton");

@@ -20,7 +20,6 @@
         },
         success: function (result) {
             console.log("[user_unlock.js][unlockUserAccount][success] => (result): ", result);
-            //console.log("[user_unlock.js][unlockUserAccount][success] =>");
             isUserAccountLocked(userId);
         }
     });
@@ -37,7 +36,6 @@ function isUserAccountLocked(userId) {
         },
         cache: false,
         success: function (data) {
-            //console.log(`[user_unlock.js][isUserAccountLocked][success] => (data): ${data}`);
             console.log(`[user_unlock.js][isUserAccountLocked][success] => (data): ${data}`);
             processResponse(data);
 
@@ -48,8 +46,11 @@ function isUserAccountLocked(userId) {
 function processResponse(responseData) {
 
     let userIsLockedOut = document.getElementById("userIsLockedOut");
+    alert("userIsLockedOut", userIsLockedOut);
     if (userIsLockedOut) {
         userIsLockedOut.innerText = responseData;
+        userIsLockedOut.style.backgroundColor = "rgb(40, 167, 69, 0.30)";
+        userIsLockedOut.setAttribute("class", "border border-success");
     }
 
     processCard();
@@ -60,7 +61,7 @@ function processCard() {
 
     let unlockAccountCard = document.getElementById("unlockAccountCard");
     if (unlockAccountCard) {   
-        unlockAccountCard.setAttribute("class", "card bg-light text-secondary")
+        unlockAccountCard.setAttribute("class", "card bg-light text-secondary");
     }
 
     let unlockAccountButton = document.getElementById("unlockAccountButton");

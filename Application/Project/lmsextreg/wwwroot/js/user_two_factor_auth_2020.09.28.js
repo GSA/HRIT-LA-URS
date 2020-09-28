@@ -52,6 +52,8 @@ function processIsTwoFactorAuthEnabledResponse(responseData) {
     let twoFactorEnabled = document.getElementById("twoFactorEnabled");
     if (twoFactorEnabled) {
         twoFactorEnabled.innerText = responseData;
+        twoFactorEnabled.style.backgroundColor = "rgb(40, 167, 69, 0.30)";
+        twoFactorEnabled.setAttribute("class", "border border-success");
     }
 
     processTwoFactorAuthCard();
