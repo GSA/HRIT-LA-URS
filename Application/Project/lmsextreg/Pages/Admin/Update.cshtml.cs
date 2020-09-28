@@ -82,7 +82,7 @@ namespace lmsextreg.Pages.Admin
                 string title        = "Disable 2-Factor Authentication";
                 string text         = "This will allow user to re-establish 2-factor authentication.";
                 string buttonLabel  = "Disable";
-                string onSubmit     = $"javascript:disableTwoFactor('{this.AppUser.Id}');";
+                string onSubmit     = $"javascript:disableTwoFactorAuth('{this.AppUser.Id}');";
                 string cardId       = "disableTwoFactorCard";
                 string buttonId     = "disableTwoFactorButton";
                 AvailableActionCardViewModel cardVM = new AvailableActionCardViewModel(title, text, buttonLabel, onSubmit, cardId, buttonId);

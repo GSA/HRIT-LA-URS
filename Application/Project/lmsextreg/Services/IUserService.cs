@@ -13,5 +13,6 @@ namespace lmsextreg.Services
         List<ApplicationUser> RetrieveAllUsers();
         int UnlockUser(string userId);
         int ConfirmEmailAddress(string userId);
+        int DisableTwoFactorAuth(string userId);
     }
 }

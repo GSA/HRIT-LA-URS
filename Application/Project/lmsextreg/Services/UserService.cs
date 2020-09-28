@@ -42,6 +42,11 @@ namespace lmsextreg.Services
             appUser.EmailConfirmed = true;
             return _userRepository.UpdateUser(appUser);
         }
-
+        public int DisableTwoFactorAuth(string userId)
+        {
+            ApplicationUser appUser = this.RetrieveUserByUserId(userId);
+            appUser.TwoFactorEnabled = false;
+            return _userRepository.UpdateUser(appUser);
+        }
     }
 }
