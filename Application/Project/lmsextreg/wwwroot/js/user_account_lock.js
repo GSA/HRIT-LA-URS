@@ -46,7 +46,6 @@ function isUserAccountLocked(userId) {
 function processResponse(responseData) {
 
     let userIsLockedOut = document.getElementById("userIsLockedOut");
-    alert("userIsLockedOut", userIsLockedOut);
     if (userIsLockedOut) {
         userIsLockedOut.innerText = responseData;
         userIsLockedOut.style.backgroundColor = "rgb(40, 167, 69, 0.30)";

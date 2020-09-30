@@ -34,6 +34,7 @@ namespace lmsextreg.Pages.Admin
             public string EmailAddress { get; set; }
         }
 
+        [HttpGet]
         public void OnGet(string emailAddress = null)
         {
             string logSnippet = new StringBuilder("[")
@@ -50,11 +51,16 @@ namespace lmsextreg.Pages.Admin
             else
             {
                 ApplicationUser appUser = _userService.RetrieveUserByEmailAddress(emailAddress);
+                Console.WriteLine(logSnippet + $"(appUser == null): '{appUser == null}'");
                 this.Users = new List<ApplicationUser>();
-                this.Users.Add(appUser);
+                if (appUser != null)
+                {
+                    this.Users.Add(appUser);
+                }
             }
         }
 
+        [HttpPost]
         public IActionResult OnPostAsync(string returnUrl = null)
         {
             string logSnippet = new StringBuilder("[")
@@ -64,7 +70,7 @@ namespace lmsextreg.Pages.Admin
 
             System.Console.WriteLine(logSnippet + $"(Input.EmailAddress): '{Input.EmailAddress}'");
 
-            return RedirectToAction(nameof(OnGet), new { @emailAddress = Input.EmailAddress });
+            return RedirectToPage("Index", new { @emailAddress = Input.EmailAddress });
         }
     }
 }
