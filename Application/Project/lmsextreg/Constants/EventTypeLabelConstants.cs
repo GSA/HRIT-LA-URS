@@ -22,5 +22,9 @@ namespace lmsextreg.Constants
         public static readonly string ENROLLMENT_REQUSTED           = "ENROLLMENT_REQUSTED";
         public static readonly string REENROLLMENT_REQUSTED         = "REENROLLMENT_REQUSTED";
         public static readonly string ENROLLMENT_WITHDRAWN          = "ENROLLMENT_WITHDRAWN";
+
+        public static readonly string ADMIN_UNLOCKED_ACCOUNT            = "ADMIN_UNLOCKED_ACCOUNT";
+        public static readonly string ADMIN_CONFIRMED_EMAIL             = "ADMIN_CONFIRMED_EMAIL";
+        public static readonly string ADMIN_DISABLED_TWO_FACTOR_AUTH    = "ADMIN_DISABLED_TWO_FACTOR_AUTH";
     }
 }
