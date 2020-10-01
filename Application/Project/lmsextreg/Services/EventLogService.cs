@@ -3,7 +3,9 @@ using System.Text;
 using Microsoft.Extensions.Logging;
 using lmsextreg.Data;
 using lmsextreg.Models;
+using lmsextreg.ApiModels;
 using lmsextreg.Repositories;
+using Serilog.Events;
 
 namespace lmsextreg.Services
 {
@@ -121,6 +123,19 @@ namespace lmsextreg.Services
             };
 
             _eventLogRepository.Add(eventLog);
-        }                
-    }
+        }
+        
+        public void LogEvent(UserAdminEvent userAdminEvent)
+        {
+            EventLog eventLog = new EventLog();
+
+            eventLog.EventTypeCode = userAdminEvent.EventTypeCode;
+            eventLog.UserCreatedID = userAdminEvent.AdminCreatedId;
+            eventLog.UserCreatedName = userAdminEvent.AdminCreatedEmail;
+            eventLog.DataValues = userAdminEvent.DataValues;
+            eventLog.DateTimeCreated = DateTime.Now;
+
+            _eventLogRepository.Add(eventLog);
+        }
+    } 
 }

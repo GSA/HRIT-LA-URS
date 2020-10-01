@@ -11,8 +11,7 @@ using lmsextreg.Data;
 
 namespace lmsextreg.Pages.Admin
 {
-    //[Authorize(Roles = "ADMIN")]
-    [AllowAnonymous]
+    [Authorize(Roles = "ADMIN")]
     public class IndexModel : PageModel
     {
         private readonly IUserService _userService;

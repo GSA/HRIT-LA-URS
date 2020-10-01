@@ -11,8 +11,7 @@ using System.Collections.Generic;
 
 namespace lmsextreg.Pages.Admin
 {
-    //[Authorize(Roles = "ADMIN")]
-    [AllowAnonymous]
+    [Authorize(Roles = "ADMIN")]
     public class UpdateModel : PageModel
     {
         private readonly IUserService _userService;

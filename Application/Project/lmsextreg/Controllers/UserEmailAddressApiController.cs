@@ -1,28 +1,34 @@
 using System;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using lmsextreg.Services;
 using lmsextreg.Data;
 using lmsextreg.ApiModels;
+using lmsextreg.Constants;
 
 namespace lmsextreg.Controllers
 {
     [Route("api/user/emailaddress")]
     [ApiController]
-    [AllowAnonymous]
+    [Authorize(Roles = "ADMIN")]
 
     public class UserEmailAddressApiController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserService _userService;
+        private readonly IEventLogService _eventLogService;
 
-        public UserEmailAddressApiController(IUserService userSvc)
+        public UserEmailAddressApiController(UserManager<ApplicationUser> userMgr, IUserService userSvc, IEventLogService eventLogSvc)
         {
+            _userManager = userMgr;
             _userService = userSvc;
+            _eventLogService = eventLogSvc;
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public ActionResult<bool> IsEmailAddressConfirmed(string userId)
         {
             string logSnippet = new StringBuilder("[")
@@ -38,7 +44,6 @@ namespace lmsextreg.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult<string> ConfirmEmailAddress(UserAccount userAccount)
         {
             string logSnippet = new StringBuilder("[")
@@ -51,9 +56,18 @@ namespace lmsextreg.Controllers
             int rowsUpdated = _userService.ConfirmEmailAddress(userAccount.Id);
             Console.WriteLine(logSnippet + $"(rowsUpdated)........: '{rowsUpdated}'");
 
+            ApplicationUser admin = this.GetCurrentUserAsync().Result;
+            ApplicationUser user = _userService.RetrieveUserByUserId(userAccount.Id);
+
+            Console.WriteLine(logSnippet + $"(admin == null): '{admin == null}'");
+            Console.WriteLine(logSnippet + $"(user == null).: '{user == null}'");
+
+            UserAdminEvent uaEvent = new UserAdminEvent(EventTypeCodeConstants.ADMIN_CONFIRMED_EMAIL, admin, user);
+            _eventLogService.LogEvent(uaEvent);
+
             return RedirectToAction(nameof(IsEmailAddressConfirmed), new { @userId = userAccount.Id });
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
-
-
 }
