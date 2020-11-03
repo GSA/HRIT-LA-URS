@@ -200,7 +200,7 @@ namespace lmsextreg.Pages.Approvals
 
             System.Console.WriteLine(logSnippet + $"(Input.StatusCode): {Input.StatusCode}");
 
-            return RedirectToAction(nameof(OnGetAsync), new {@statusCode = Input.StatusCode});
+            return RedirectToPage("./Index", new {@statusCode = Input.StatusCode});
         }
     }
 }
