@@ -57,6 +57,9 @@ namespace lmsextreg.Pages.Enrollments
             [Display(Name = "Program")]  
             public string LMSProgramID { get; set; }
 
+            [Required]
+            [MinLength(10, ErrorMessage = "Please answer the questions listed above.")]
+            [MaxLength(200, ErrorMessage = "A maximum of 200 characters are permitted.")]
             [Display(Name = "Remarks")]  
             public string Remarks { get; set; }
         }
