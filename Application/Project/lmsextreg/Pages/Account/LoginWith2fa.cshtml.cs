@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -73,19 +74,25 @@ namespace lmsextreg.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(bool rememberMe, string returnUrl = null)
         {
-            _logger.LogDebug("LoginWith2faModel][OnPostAsync] =>");
+            string logSnippet = new StringBuilder("[")
+                    .Append(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"))
+                    .Append("][LoginWith2fa][OnPostAsync] => ")
+                    .ToString();
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-             _logger.LogDebug("LoginWith2faModel][OnPostAsync] => Model state is valid");
-
+ 
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            Console.WriteLine(logSnippet + $"(user == null): {user == null}");
+
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
             }
+
+            Console.WriteLine(logSnippet + $"({user.UserName}): {user.UserName}");
 
             var authenticatorCode = Input.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
@@ -93,26 +100,23 @@ namespace lmsextreg.Pages.Account
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("LoginWith2faModel][OnPostAsync] => User with ID '{UserId}' logged in with 2fa.", user.Id);
+                Console.WriteLine(logSnippet + $"{user.UserName} successfully logged in using 2FA.");
 
                 ///////////////////////////////////////////////////////////////////
                 // Log the 'LOGIN_WITH_2FA' event
                 ///////////////////////////////////////////////////////////////////
                 _eventLogService.LogEvent(EventTypeCodeConstants.LOGIN_WITH_2FA, user);  
 
-                _logger.LogDebug("LoginWith2faModel][OnPostAsync] => Redirecting to ./LoginWith2fa2");                 
-
-                // return LocalRedirect(Url.GetLocalUrl(returnUrl));
                 return RedirectToPage("./LoginWith2fa2"); 
             }
             else if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID '{UserId}' account locked out.", user.Id);
+                Console.WriteLine(logSnippet + $"{user.UserName} has been locked out.");
                 return RedirectToPage("./Lockout");
             }
             else
             {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID '{UserId}'.", user.Id);
+                Console.WriteLine(logSnippet + $"Invalid authenticator code entered for {user.UserName}.");
                 ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
                 return Page();
             }
